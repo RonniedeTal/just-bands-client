@@ -31,7 +31,7 @@ function Signup() {
 
                 await axios.post("http://localhost:5005/api/auth/signup", newUser)
                
-            navigate("/home")
+            navigate("/")
             
         } catch (error) {
             if (error.response.status === 400){

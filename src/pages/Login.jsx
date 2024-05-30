@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Signup from './Signup';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/auth.context';
+
 
 function Login() {
-
+  const {authenticateUser}=useContext(AuthContext)
     const navigate=useNavigate()
 
     const [email, setEmail]=useState("");
@@ -15,7 +17,7 @@ function Login() {
     const handleEmailChange=(e)=>setEmail(e.target.value);
     const handlePasswordChange=(e)=>setPassword(e.target.value);
 
-    const hanndleLogin=async(e)=>{
+    const handleLogin=async(e)=>{
         e.preventDefault();
 
         // call backend to validation 
@@ -29,6 +31,12 @@ function Login() {
 
             const response=await axios.post("http://localhost:5005/api/auth/login", userCredentials)
             console.log(response);
+
+            //store the token in the localstore
+            localStorage.setItem("authToken",response.data.authToken)
+            //validating the actual token
+           authenticateUser()    //----------me rompe el codigo
+
             navigate("/home")
         } catch (error) {
             console.log(error);
@@ -44,7 +52,7 @@ function Login() {
   return (
     <div>
       <h1>Log In</h1>
-      <form onSubmit={hanndleLogin}>
+      <form onSubmit={handleLogin}>
         <label>Email Address:</label>
         <input type="email" name="email" value={email} onChange={handleEmailChange}/>
         <br/>
