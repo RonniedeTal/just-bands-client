@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import MyNavbar from './components/MyNavbar'
 import Profile from './pages/Profile'
 import OnlyPrivate from './components/OnlyPrivate'
+import CreateABand from './pages/CreateABand'
 function App() {
   
 
@@ -19,6 +20,7 @@ function App() {
        <Route path='/home' element={<Home />}/>
        <Route path='/signup' element={<Signup />}/>
        <Route path="/profile"element={<OnlyPrivate><Profile /></OnlyPrivate>}/>
+       <Route path='/new-band' element={<CreateABand />}/>
        </Routes>
    </div>
   )

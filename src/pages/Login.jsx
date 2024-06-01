@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Signup from './Signup';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
+import logo from "../../public/images/logo.png"
 
 
 function Login() {
@@ -51,7 +52,7 @@ function Login() {
     }
   return (
     <div>
-      <h1>Log In</h1>
+      <img src={logo} alt="logo" style={{width:500}}/>
       <form onSubmit={handleLogin}>
         <label>Email Address:</label>
         <input type="email" name="email" value={email} onChange={handleEmailChange}/>
@@ -64,6 +65,13 @@ function Login() {
 {errorMessage && <p>{errorMessage}</p>}
 <br/>
 <Link to={"/signup"}>Signup</Link>
+<br/>
+<p>
+Attention rock enthusiasts! Welcome to an exclusive page dedicated to lovers of rock and its various subgenres. Here, amateur bands have the opportunity to showcase their material and connect with other passionate rock fans. Whether you're into classic rock, punk, metal, or any other form of rock, this is your community.
+
+This platform is designed for those who live and breathe rock music. It's a place to discover new bands, share your own music, and engage with fellow rock fans. From the raw energy of garage rock to the intricate melodies of progressive rock, we celebrate it all.
+
+However, if pop music is your preference, this may not be the place for you. Our focus is on fostering a community centered around the rock genre, allowing its unique sounds and culture to thrive. Join us and be part of a vibrant network that supports and promotes rock music in all its forms.</p>
       </form>
     </div>
   )

@@ -3,6 +3,7 @@ import { useState } from "react";
 import React from 'react'
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import cat from "../../public/images/cat.gif"
 
 
 function Signup() {
@@ -45,6 +46,8 @@ function Signup() {
   return (
     <div>
       <h1>Sign Up or Die</h1>
+      <h3>We have kittens!!!</h3>
+      <img src={cat} alt="kitten" style={{width:200}}/>
       <form onSubmit={handleSignup}>
         <label>Email Address:</label>
         <input type="email" name="email" value={email} onChange={handleEmailChange}/>

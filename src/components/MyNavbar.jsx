@@ -17,10 +17,12 @@ navigate("/")
   }
   return (
     <div>
-      <h1>JustBands</h1>
+      
       {isLoggedIn===true &&<>
       <Link to={"/home"}><p>Home</p> </Link>
       <Link to={"/profile"}>Profile</Link>
+      <br/>
+      
       <br/>
       <Link onClick={handleLogut}>Log Out</Link></>}
     </div>
