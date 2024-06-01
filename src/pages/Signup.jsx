@@ -4,6 +4,8 @@ import React from 'react'
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import cat from "../../public/images/cat.gif"
+import Form from 'react-bootstrap/Form';
+import logo from "/images/logo.png"
 
 
 function Signup() {
@@ -47,23 +49,35 @@ function Signup() {
     <div>
       <h1>Sign Up or Die</h1>
       <h3>We have kittens!!!</h3>
-      <img src={cat} alt="kitten" style={{width:200}}/>
-      <form onSubmit={handleSignup}>
-        <label>Email Address:</label>
-        <input type="email" name="email" value={email} onChange={handleEmailChange}/>
-        <br/>
-        <label >Username:</label>
-        <input type="text" name="username" value={username} onChange={handleUsernameChange}/>
-        <br/>
-        <label >Password:</label>
-        <input type="password" name="password" value={password} onChange={handlePasswordChange} />
-        <br/>
+      <img src={logo} alt="logo" style={{width:500}} className='moving'/>
+      <Form onSubmit={handleSignup}>
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+      <Form.Group style={{width:400, }}>
+        <Form.Label >Email Address:</Form.Label>
+        <Form.Control type="email" name="email" value={email} onChange={handleEmailChange}/>
+        </Form.Group>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+        <Form.Group style={{width:400, }}>
+        <Form.Label >Username:</Form.Label>
+        <Form.Control type="text" name="username" value={username} onChange={handleUsernameChange}/>
+        </Form.Group>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+
+        <Form.Group style={{width:400, }}>
+        <Form.Label >Password:</Form.Label>
+        <Form.Control type="password" name="password" value={password} onChange={handlePasswordChange} />
+        </Form.Group>
+        </div>
         <button type="submit">Let's do it</button>
 
         {errorMessage && <p>{errorMessage}</p>}
         <br/>
         
-      </form>
+      </Form>
     </div>
   )
 }

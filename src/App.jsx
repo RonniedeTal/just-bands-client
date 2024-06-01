@@ -8,6 +8,7 @@ import MyNavbar from './components/MyNavbar'
 import Profile from './pages/Profile'
 import OnlyPrivate from './components/OnlyPrivate'
 import CreateABand from './pages/CreateABand'
+import NotFound from './pages/NotFound'
 function App() {
   
 
@@ -21,6 +22,7 @@ function App() {
        <Route path='/signup' element={<Signup />}/>
        <Route path="/profile"element={<OnlyPrivate><Profile /></OnlyPrivate>}/>
        <Route path='/new-band' element={<CreateABand />}/>
+       <Route path='/not-found'element={<NotFound />}/>
        </Routes>
    </div>
   )
