@@ -25,6 +25,7 @@ function App() {
        <Route path="/profile"element={<OnlyPrivate><Profile /></OnlyPrivate>}/>
        <Route path='/new-band' element={<CreateABand />}/>
        <Route path='/all-bands'element={<AllBands />}/>
+       
        <Route path='/band-details/:bandId'element={<AllBandsDetails/>}/>
        <Route path='/not-found'element={<NotFound />}/>
        </Routes>
