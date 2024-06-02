@@ -9,6 +9,8 @@ import Profile from './pages/Profile'
 import OnlyPrivate from './components/OnlyPrivate'
 import CreateABand from './pages/CreateABand'
 import NotFound from './pages/NotFound'
+import AllBands from './pages/AllBands'
+import AllBandsDetails from './pages/AllBandsDetails'
 function App() {
   
 
@@ -22,6 +24,8 @@ function App() {
        <Route path='/signup' element={<Signup />}/>
        <Route path="/profile"element={<OnlyPrivate><Profile /></OnlyPrivate>}/>
        <Route path='/new-band' element={<CreateABand />}/>
+       <Route path='/all-bands'element={<AllBands />}/>
+       <Route path='/band-details/:bandId'element={<AllBandsDetails/>}/>
        <Route path='/not-found'element={<NotFound />}/>
        </Routes>
    </div>
@@ -29,3 +33,4 @@ function App() {
 }
 
 export default App
+//Route path=''element={}/>
