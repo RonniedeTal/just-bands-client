@@ -36,7 +36,7 @@ function AllBandsDetails() {
       <h3>{bandDetails.genre}</h3>
       <h6>{bandDetails.country}</h6>
       {/* {bandDetails.image---------------------------}*/}
-      {/* {bandDetails.description------------------------}*/}
+      <p>{bandDetails.description}</p>
     </div>
   );
 }
