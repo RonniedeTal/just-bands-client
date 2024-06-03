@@ -23,10 +23,11 @@ const [randomBand, setRandomBand]=useState([])
       <Link to={"/all-bands"}>All the Bands</Link>
 
        <div>
+        <h1> Our Recomendation:</h1>
         <Link to={`/band-details/${randomBand._id}`}>{/*no me dirige ... revisar la llamada de allbanddetais*/}
         <p>{randomBand.name}</p>
         <p>{randomBand.genre}</p>
-        {/*add image, city, country*/ }
+        {/*add image,  country*/ }
         </Link>
        </div>
      

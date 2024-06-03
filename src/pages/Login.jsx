@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 import logo from "/images/logo.png"
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function Login() {
   const {authenticateUser}=useContext(AuthContext)
@@ -65,7 +66,7 @@ function Login() {
         <Form.Control type="password" name="password" value={password} onChange={handlePasswordChange} />
        </Form.Group>
 </div>
-        <button type="submit">Let's Rock!!!</button>
+        <Button variant="dark" type="submit">Let's Rock!!!</Button>
 
 {errorMessage && <p>{errorMessage}</p>}
 <br/>

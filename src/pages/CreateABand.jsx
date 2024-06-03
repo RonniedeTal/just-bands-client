@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+
 function CreateABand() {
   const navigate = useNavigate();
 
@@ -23,7 +27,7 @@ function CreateABand() {
       //songs----to add----
       genre, //use a checkbox
       country,
-      crew,
+      //crew,
     };
     try {
       const response = axios.post("https://localhost:5005/api/band", newBand);
@@ -38,41 +42,49 @@ function CreateABand() {
   return (
     <div>
       <h3>Post your Band</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Band Name : </label>
-          <input
+      < Form onSubmit={handleSubmit} >
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+        <Form.Group style={{width:400, }}>
+        <Form.Label >Band Name : </Form.Label >
+        <Form.Control
             type="text"
             name="Band name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+            onChange={(e) => setName(e.target.value)}/>
+            </Form.Group>
+          
         </div>
         <br />
-        <div>
-          <label>About the Band :</label>
-          <textarea
-            type="text"
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+        
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" style={{width:400, }}>
+          <Form.Label >About the Band :</Form.Label >
+          <Form.Control as="textarea" rows={3} type="text"
             description="description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />{" "}
+            onChange={(e) => setDescription(e.target.value)}/>
+            
+           </Form.Group>
+           </div>
           <br />
-          <div>
-            <label>Country:</label>
-            <input
+          <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+          <Form.Group style={{width:400, }}>
+            <Form.Label>Country:</Form.Label>
+            <Form.Control
               type="text"
               name="Country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
+            </Form.Group>
           </div>
           <br />
-        </div>
+        
 
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+        <Form.Group style={{width:400, }}>
           <h3>Choose all your Genres:</h3>
-          <label>Grunge </label>
+          <Form.Label>Grunge </Form.Label>
 
           <input
             type="checkbox"
@@ -80,18 +92,17 @@ function CreateABand() {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Metal</label>
+       
+          <Form.Label>Metal</Form.Label>
           <input
             type="checkbox"
             genre="Metal"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Stoner</label>
+        
+        
+          <Form.Label>Stoner</Form.Label>
 
           <input
             type="checkbox"
@@ -99,18 +110,16 @@ function CreateABand() {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Alternative</label>
+        
+          <Form.Label>Alternative</Form.Label>
           <input
             type="checkbox"
             genre="Alternative"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Hardcore</label>
+        
+          <Form.Label>Hardcore</Form.Label>
 
           <input
             type="checkbox"
@@ -118,18 +127,17 @@ function CreateABand() {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Progressive</label>
+        
+          <Form.Label>Progressive</Form.Label>
           <input
             type="checkbox"
             genre="Progressive"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>DeathMetal</label>
+         
+        
+          <Form.Label>DeathMetal</Form.Label>
 
           <input
             type="checkbox"
@@ -137,18 +145,16 @@ function CreateABand() {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Psychedelic</label>
+        
+          <Form.Label>Psychedelic</Form.Label>
           <input
             type="checkbox"
             genre="Psychedelic"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Punk</label>
+        
+          <Form.Label>Punk</Form.Label>
 
           <input
             type="checkbox"
@@ -156,18 +162,16 @@ function CreateABand() {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Grindcore</label>
+        
+          <Form.Label>Grindcore</Form.Label>
           <input
             type="checkbox"
             genre="Grindcore"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Thrash</label>
+        
+          <Form.Label>Thrash</Form.Label>
 
           <input
             type="checkbox"
@@ -175,19 +179,19 @@ function CreateABand() {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Others</label>
+        
+          <Form.Label>Others</Form.Label>
           <input
             type="checkbox"
             genre="Others"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
-          />
+          /> 
+          </Form.Group>
         </div>
 
-        <button type="submit">Submit</button>
-      </form>
+        <Button variant="dark" type="submit">Submit</Button>
+        </Form>
     </div>
   );
 }

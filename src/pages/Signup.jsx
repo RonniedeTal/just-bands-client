@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import cat from "../../public/images/cat.gif"
 import Form from 'react-bootstrap/Form';
 import logo from "/images/logo.png"
+import Button from 'react-bootstrap/Button';
 
 
 function Signup() {
@@ -72,8 +73,8 @@ function Signup() {
         <Form.Control type="password" name="password" value={password} onChange={handlePasswordChange} />
         </Form.Group>
         </div>
-        <button type="submit">Let's do it</button>
-
+        <Button variant="dark" type="submit">Let's do it!!!</Button>
+        
         {errorMessage && <p>{errorMessage}</p>}
         <br/>
         

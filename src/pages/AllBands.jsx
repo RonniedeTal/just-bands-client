@@ -25,7 +25,7 @@ function AllBands() {
             <p>{eachBand.name}</p> 
             
             <p>{eachBand.genre}</p> 
-            {/* addimg */}
+            {/* addimg ---------------------*/}
           </Link>
         </div>
       ))}
