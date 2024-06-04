@@ -1,6 +1,6 @@
 import axios from "axios";
 const service =axios.create({
-    baseURL:"http://localhost:5005/api"//all calls to bknd
+    baseURL:`${import.meta.env.ORIGIN}/api`//all calls to bknd
 })
 
 //this structure allow us to intercept the call less before (from client to server)to add token
