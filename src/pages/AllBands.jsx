@@ -16,7 +16,9 @@ function AllBands() {
         console.log(error); //---------añadir el error page
       });
   }, []);
-
+if(allBands===null){
+  return <div className="loader"></div>
+}
   return (
     <div>
       {allBands.map((eachBand) => (

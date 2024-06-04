@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import logouser from "/images/logouser.png"
 function Home() {
 const [randomBand, setRandomBand]=useState([])
   useEffect(()=>{
@@ -25,9 +26,20 @@ const [randomBand, setRandomBand]=useState([])
        <div>
         <h1> Our Recomendation:</h1>
         <Link to={`/band-details/${randomBand._id}`}>{/*no me dirige ... revisar la llamada de allbanddetais*/}
-        <p>{randomBand.name}</p>
-        <p>{randomBand.genre}</p>
-        {/*add image,  country*/ }
+        <h1>{randomBand.name}</h1>
+        <h3>{randomBand.genre}</h3>
+        <img 
+        src={randomBand.profileImage} style={{width:250}}
+        onError={(e) => { 
+          e.target.onerror = null; 
+          e.target.src = logouser; 
+          e.target.style.width = '250px'; 
+          e.target.style.height = '250px'; 
+        }} 
+      />
+        <p>{randomBand.country}</p>
+
+        
         </Link>
        </div>
      

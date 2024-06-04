@@ -11,6 +11,9 @@ import CreateABand from './pages/CreateABand'
 import NotFound from './pages/NotFound'
 import AllBands from './pages/AllBands'
 import AllBandsDetails from './pages/AllBandsDetails'
+import AddForm from "./components/AddForm"
+import ErrorPage from './pages/ErrorPage'
+import Footer from './components/Footer'
 function App() {
   
 
@@ -25,10 +28,12 @@ function App() {
        <Route path="/profile"element={<OnlyPrivate><Profile /></OnlyPrivate>}/>
        <Route path='/new-band' element={<CreateABand />}/>
        <Route path='/all-bands'element={<AllBands />}/>
-       
+       <Route path='/add-form'element={<AddForm />}/>
        <Route path='/band-details/:bandId'element={<AllBandsDetails/>}/>
        <Route path='/not-found'element={<NotFound />}/>
+       <Route path='*'element={<ErrorPage />}/>
        </Routes>
+       <Footer />
    </div>
   )
 }

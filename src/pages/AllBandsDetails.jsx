@@ -1,17 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import logouser from "/images/logouser.png"
+import AddForm from "../components/AddForm";
 function AllBandsDetails() {
   const params = useParams();
   console.log(params);
   //create an state to store the external data
   const [bandDetails, setBandDetails] = useState(null);
 
-  //useEffect componentDidMount to call the data just when the component is created for the first time
-  useEffect(() => {
+
+
+ useEffect(() => {
     getData();
   }, []);
+
+ 
+  //useEffect componentDidMount to call the data just when the component is created for the first time
+ 
 
   const getData = async () => {
     try {
@@ -21,12 +27,12 @@ function AllBandsDetails() {
       console.log(response);
       setBandDetails(response.data);
     } catch (error) {
-      console.log();
+      console.log(error);
     }
   };
   //calling the API
   if (bandDetails === null) {
-    return <h1>...loading</h1>;
+    return <div className="loader"></div>;
   }
 
   return (
@@ -35,10 +41,24 @@ function AllBandsDetails() {
 
       <h3>{bandDetails.genre}</h3>
       <h6>{bandDetails.country}</h6>
-      {/* {bandDetails.image---------------------------}*/}
+      <img 
+        src={bandDetails.profileImage} 
+        onError={(e) => { 
+          e.target.onerror = null; 
+          e.target.src = logouser; 
+          e.target.style.width = '150px'; 
+          e.target.style.height = '150px'; 
+        }} 
+      />
       <p>{bandDetails.description}</p>
+
+      <AddForm/>
     </div>
+
+
   );
+
+
 }
 
 export default AllBandsDetails;
