@@ -63,9 +63,9 @@ function AllBandsDetails() {
 
         
       <Link to={`/edit-band/${bandDetails._id}`}>
-      {isLoggedIn&&loggedUserId==owner && (
+         {isLoggedIn&&loggedUserId==owner._id && (
             <button>Update Band</button>)}
-       {/*     <button>Update Band</button>*/}
+        {/* <button>Update Band</button>*/}
         </Link>
         <h3>Comments:</h3>
       <AddForm/>

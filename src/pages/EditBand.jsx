@@ -253,7 +253,7 @@ function EditBand() {
 <Button variant="dark" type="submit">Submit</Button>
         
         </Form>
-        {isLoggedIn&&loggedUserId===owner && (
+        {isLoggedIn&&loggedUserId===owner._id && (
         <Button variant="dark" onClick={deleteBand}>Delete</Button>)}
     </div>
    

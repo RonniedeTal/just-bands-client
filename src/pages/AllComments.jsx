@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";
 function AllComments(props) {
   const navigate=useNavigate()
   const [commentList, setCommentList] = useState([]);
-  const {authenticatedUser, isLoggedIn, loggedUserId}=useContext(AuthContext)
+  const {authenticateUser, isLoggedIn, loggedUserId}=useContext(AuthContext)
   const [owner, setOwner]=useState("")
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function AllComments(props) {
       console.log(response.data);
       
       setCommentList(response.data);
-      //setOwner(response.data.owner)
+      setOwner(response.data.owner)
       console.log(commentList);
     } catch (error) {
      
@@ -33,7 +33,7 @@ function AllComments(props) {
   const deleteComment=async(e,id)=>{
     e.preventDefault()
       try {
-        //await authenticatedUser()
+        await authenticateUser()
         const response=await service.delete(`/comment/${id}`)
        // console.log(response);
         getComment()
@@ -46,13 +46,14 @@ function AllComments(props) {
   return (
   <div>
 
-{commentList&&commentList.map((eachCommentList, i)=>{
+{commentList&&commentList.map((eachComment, i)=>{
+  console.log(eachComment);
     return(
         <div key={i}>
-            <p>{eachCommentList.text}</p>
-           {/* {isLoggedIn&&loggedUserId===owner &&(
-            <button onClick={(e)=>deleteComment(e, eachCommentList._id)}>Delete</button>)}*/}
-               <button onClick={(e)=>deleteComment(e, eachCommentList._id)}>Delete</button>
+            <p>{eachComment.text}</p>
+           {isLoggedIn&&loggedUserId==eachComment.user &&(
+            <button onClick={(e)=>deleteComment(e, eachComment._id)}>Delete</button>)}
+            
              </div>
     )
 })}
