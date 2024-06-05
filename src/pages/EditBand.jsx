@@ -47,7 +47,7 @@ function EditBand() {
       setOwner(response.data.owner);
       
     } catch (error) {
-      console.log(error);
+      navigate("/error");
     }
   };
   //calling the API
