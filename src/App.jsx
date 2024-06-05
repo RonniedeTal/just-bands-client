@@ -14,6 +14,8 @@ import AllBandsDetails from './pages/AllBandsDetails'
 import AddForm from "./components/AddForm"
 import ErrorPage from './pages/ErrorPage'
 import Footer from './components/Footer'
+import AllComments from './pages/AllComments'
+import EditBand from './pages/EditBand'
 function App() {
   
 
@@ -30,9 +32,12 @@ function App() {
        <Route path='/all-bands'element={<AllBands />}/>
        <Route path='/add-form'element={<AddForm />}/>
        <Route path='/band-details/:bandId'element={<AllBandsDetails/>}/>
-       <Route path='/not-found'element={<NotFound />}/>
-       <Route path='*'element={<ErrorPage />}/>
-       </Routes>
+       <Route path='/all-comments'element={<AllComments />}/>
+       <Route path='/edit-band/:bandId'element={<EditBand />}/>
+       
+       <Route path='*'element={<NotFound />}/>
+       <Route path= "/error" element={<ErrorPage />}/>
+       </Routes>  
        <Footer />
    </div>
   )

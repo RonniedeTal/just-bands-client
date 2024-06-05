@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import service from "../services/index.services";
+import { AuthContext } from "../context/auth.context";
+import AllComments from "../pages/AllComments";
 
 function AddForm() {
   const navigate = useNavigate();
   const params= useParams("")
 
+  const {loggedUserId, isLoggedIn}=useContext(AuthContext)
   const [comment, setComment] = useState("");
-    const [feedback, setFeedBack]=useState([])
+  
 
 
 useEffect(()=>{
 
-getFeedBack()
+//getFeedBack()
 
 },[])
 
@@ -21,31 +24,19 @@ const handleSubmit = async (e) => {
 
     const newcomment = {
       text: comment,
-      //user,
+      user: loggedUserId,
+      band:params.bandId
     };
     try {
       // const response=axios.post("http://localhost:5005/api/comment", newcomment )
-      const response = await service.post("/comment", newcomment);
-      navigate(`/band-details/${params.bandId}`);
+      await service.post("/comment", newcomment);
+      navigate(0);
     } catch (error) {
       console.log(error);
     }
   };
 
-const getFeedBack=async()=>{
-    try {
-        const response=await service.get(`/comment/${params._id}`)
-        console.log(response);
-    setFeedBack(response.data)
-    } catch (error) {
-        console.log(error);
-    }
-    
-} 
-if (feedback === null) {
-    return <div className="loader"></div>;
-  }
- 
+
  
   return (
     <div>
@@ -63,12 +54,11 @@ if (feedback === null) {
       </form>
       <div>
         <h3>Comments:</h3>
-        <ul>
-          {feedback.map((comment, index) => (
-            <li key={index}>{comment.text}</li>
-          ))}
-        </ul>
-      </div>
+        
+         
+       
+      </div>  
+      <AllComments bandId={params.bandId}/>
     </div>
   );
 }

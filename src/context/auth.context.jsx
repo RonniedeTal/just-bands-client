@@ -53,7 +53,7 @@ function AuthWrapper(props){
         authenticateUser()
     }, [])
     if (isAuthenticating===true){
-        return <p>...authenticating user</p>
+        return <p><div className="loader"></div></p>
     }
 
     return(

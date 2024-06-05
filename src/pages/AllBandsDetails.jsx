@@ -1,14 +1,22 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import logouser from "/images/logouser.png"
 import AddForm from "../components/AddForm";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+import AllComments from "../pages/AllComments";
+
 function AllBandsDetails() {
   const params = useParams();
+  const {loggedUserId, isLoggedIn}=useContext(AuthContext)
+
+  const[owner, setOwner]=useState("")
+
   console.log(params);
   //create an state to store the external data
   const [bandDetails, setBandDetails] = useState(null);
-
+  
 
 
  useEffect(() => {
@@ -26,6 +34,7 @@ function AllBandsDetails() {
       );
       console.log(response);
       setBandDetails(response.data);
+      setOwner(response.data.owner)
     } catch (error) {
       console.log(error);
     }
@@ -52,6 +61,13 @@ function AllBandsDetails() {
       />
       <p>{bandDetails.description}</p>
 
+        
+      <Link to={`/edit-band/${bandDetails._id}`}>
+      {isLoggedIn&&loggedUserId==owner && (
+            <button>Update Band</button>)}
+       {/*     <button>Update Band</button>*/}
+        </Link>
+        <h3>Comments:</h3>
       <AddForm/>
     </div>
 
