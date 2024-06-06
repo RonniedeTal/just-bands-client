@@ -16,6 +16,7 @@ import ErrorPage from './pages/ErrorPage'
 import Footer from './components/Footer'
 import AllComments from './pages/AllComments'
 import EditBand from './pages/EditBand'
+import AboutUs from './components/AboutUs'
 function App() {
   
 
@@ -34,7 +35,7 @@ function App() {
        <Route path='/band-details/:bandId'element={<AllBandsDetails/>}/>
        <Route path='/all-comments'element={<AllComments />}/>
        <Route path='/edit-band/:bandId'element={<EditBand />}/>
-       
+       <Route path='/about'element={<AboutUs/>}/>
        <Route path='*'element={<NotFound />}/>
        <Route path= "/error" element={<ErrorPage />}/>
        </Routes>  

@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { useState } from "react";
 import React from 'react'
 import { Navigate, useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ function Signup() {
 
         try {
 
-                //await axios.post("http://localhost:5005/api/auth/signup", newUser)
+               
                await service.post("/auth/signup", newUser)
             navigate("/")
             

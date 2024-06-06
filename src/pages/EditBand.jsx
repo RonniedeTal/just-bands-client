@@ -19,17 +19,17 @@ function EditBand() {
     const[owner, setOwner]=useState("")
 
   const [grunge, setGrunge]=useState(false)
-  const [metal, setMetal]=useState("")
-  const [stoner, setStoner]=useState("")
-  const [alternative, setAlternative]=useState("")
-  const [hardcore, setHardcore]=useState("")
-  const [progressive, setProgressive]=useState("")
-  const [deathmetal, setDeathMetal]=useState("")
-  const [psychedelic, setPsychedelic]=useState("")
-  const [punk, setPunk]=useState("")
-  const [grindcore, setGrindcore]=useState("")
-  const [thrash, setThrash]=useState("")
-  const [others, setOthers]=useState("")
+  const [metal, setMetal]=useState(false)
+  const [stoner, setStoner]=useState(false)
+  const [alternative, setAlternative]=useState(false)
+  const [hardcore, setHardcore]=useState(false)
+  const [progressive, setProgressive]=useState(false)
+  const [deathmetal, setDeathMetal]=useState(false)
+  const [psychedelic, setPsychedelic]=useState(false)
+  const [punk, setPunk]=useState(false)
+  const [grindcore, setGrindcore]=useState(false)
+  const [thrash, setThrash]=useState(false)
+  const [others, setOthers]=useState(false)
 
   useEffect(() => {
     getData();
@@ -44,8 +44,51 @@ function EditBand() {
     try {
        const response=await service.get(`band/${params.bandId}`)
         
-      setOwner(response.data.owner);
-      
+       setOwner(response.data.owner);
+       setName(response.data.name)
+       setDescription(response.data.description)
+       setCountry(response.data.country)
+       //console.log(response.data.genre)//este es el array de generos actuales
+
+       //si el array de strings incluye metal entonces cambiamos el estado de metal a true
+       if(response.data.genre.includes("Metal")){
+        setMetal(true)
+       }
+       if(response.data.genre.includes("Grunge")){
+        setGrunge(true)
+       }
+
+       if(response.data.genre.includes("Stoner")){
+        setStoner(true)
+       }
+       if(response.data.genre.includes("Alternative")){
+        setAlternative(true)
+       }
+       if(response.data.genre.includes("Hardcore")){
+        setHardcore(true)
+       }
+       if(response.data.genre.includes("Progressive")){
+        setProgressive(true)
+       }
+       if(response.data.genre.includes("DeathMetal")){
+        setDeathMetal(true)
+       }
+       if(response.data.genre.includes("Psychedelic")){
+        setPsychedelic(true)
+       }
+       if(response.data.genre.includes("Punk")){
+        setPunk(true)
+       }
+       if(response.data.genre.includes("Grindcore")){
+        setGrindcore(true)
+       }
+       if(response.data.genre.includes("Thrash")){
+        setThrash(true)
+       }
+       if(response.data.genre.includes("Others")){
+        setOthers(true)
+       }
+
     } catch (error) {
       navigate("/error");
     }
@@ -87,16 +130,17 @@ function EditBand() {
      }
   }
 
-  const deleteBand=async(e)=>{
-    e.preventDefault()
+  const deleteBand=async()=>{
+   
 
     try {
-      await authenticatedUser()
-        const response=await service.delete(`band/${params.bandId}`)
-        console.log(response);
+      
+      await service.delete(`band/${params.bandId}`)
+        
         navigate("/all-bands")
     } catch (error) {
         navigate("/error")
+        
     }
   }
 
@@ -150,7 +194,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Grunge"
-            value={grunge}
+            checked={grunge}
             onChange={(e) => setGrunge(!grunge)}
           />
        
@@ -158,7 +202,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Metal"
-            value={metal}
+            checked={metal}
             onChange={(e) => setMetal(!metal)}
           />
         
@@ -168,7 +212,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Stoner"
-            value={stoner}
+            checked={stoner}
             onChange={(e) => setStoner(!stoner)}
           />
         
@@ -176,7 +220,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Alternative"
-            value={alternative}
+            checked={alternative}
             onChange={(e) => setAlternative(!alternative)}
           />
         
@@ -185,7 +229,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Hardcore"
-            value={hardcore}
+            checked={hardcore}
             onChange={(e) => setHardcore(!hardcore)}
           />
         
@@ -193,7 +237,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Progressive"
-            value={progressive}
+            checked={progressive}
             onChange={(e) => setProgressive(!progressive)}
           />
          
@@ -203,7 +247,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="DeathMetal"
-            value={deathmetal}
+            checked={deathmetal}
             onChange={(e) => setDeathMetal(!deathmetal)}
           />
         
@@ -211,7 +255,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Psychedelic"
-            value={psychedelic}
+            checked={psychedelic}
             onChange={(e) => setPsychedelic(!psychedelic)}
           />
         
@@ -220,7 +264,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Punk"
-            value={punk}
+            checked={punk}
             onChange={(e) => setPunk(!punk)}
           />
         
@@ -228,7 +272,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Grindcore"
-            value={grindcore}
+            checked={grindcore}
             onChange={(e) => setGrindcore(!grindcore)}
           />
         
@@ -237,7 +281,7 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Thrash"
-            value={thrash}
+            checked={thrash}
             onChange={(e) => setThrash(!thrash)}
           />
         
@@ -245,18 +289,16 @@ function EditBand() {
           <input
             type="checkbox"
             genre="Others"
-            value={others}
+            checked={others}
             onChange={(e) => setOthers(!others)}
           /> 
           </Form.Group>
         </div>
 <Button variant="dark" type="submit">Submit</Button>
-        <br/>
-        <p>or</p>
+        
         </Form>
-        <div style={{marginTop:20}}>
         {isLoggedIn&&loggedUserId===owner._id && (
-        <Button variant="dark" onClick={deleteBand}>Delete</Button>)}</div>
+        <Button variant="dark" onClick={deleteBand}>Delete</Button>)}
     </div>
    
   )

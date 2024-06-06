@@ -5,6 +5,8 @@ import { AuthContext } from "../context/auth.context";
 import AllComments from "../pages/AllComments";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+//! se deberia llamada CommentSection
 function AddForm() {
   const navigate = useNavigate();
   const params= useParams("")
@@ -13,12 +15,27 @@ function AddForm() {
   const [comment, setComment] = useState("");
   
 
+  const [commentList, setCommentList] = useState([]);
+  useEffect(() => {
+    getComment();// redraw the actual comments running the page
+   
+  }, []);// 
 
-useEffect(()=>{
+  //useEffect componentDidMount to call the data just when the component is created for the first time
 
-//getFeedBack()
+  const getComment = async () => {
+    try {
+      const response = await service.get(`/comment/by-bands/${params.bandId}`);
+      console.log(response.data);
+      
+      setCommentList(response.data);
+      console.log(commentList);
+    } catch (error) {
+      console.log(error)
+     navigate("/error")
+    }
+};
 
-},[])
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,9 +48,11 @@ const handleSubmit = async (e) => {
     try {
       // const response=axios.post("http://localhost:5005/api/comment", newcomment )
       await service.post("/comment", newcomment);
-      navigate(0);
+      getComment()
+      
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      navigate("/error");
     }
   };
 
@@ -60,7 +79,7 @@ const handleSubmit = async (e) => {
          
        
       </div>  
-      <AllComments bandId={params.bandId}/>
+      <AllComments commentList={commentList} getComment={getComment}/>
     </div>
   );
 }
