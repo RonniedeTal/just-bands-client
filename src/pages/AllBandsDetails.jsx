@@ -5,7 +5,7 @@ import AddForm from "../components/AddForm";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import service from "../services/index.services";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 //! se deberia llamada BandDetails
 function AllBandsDetails() {
@@ -15,7 +15,7 @@ function AllBandsDetails() {
 
   const [owner, setOwner] = useState("");
   const [bandDetails, setBandDetails] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false); 
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     getData();
@@ -24,14 +24,12 @@ function AllBandsDetails() {
   const getData = async () => {
     try {
       const response = await service.get(`/band/${params.bandId}`);
-      
-      
-      
+
       setBandDetails(response.data);
       setOwner(response.data.owner);
-      setIsFavorite(response.data.isFavorite); 
+      setIsFavorite(response.data.isFavorite);
     } catch (error) {
-      console.log(error);
+    navigate("/error")
     }
   };
 
@@ -41,11 +39,9 @@ function AllBandsDetails() {
 
   const handleFavorite = async () => {
     try {
-      
-      
       const response = await service.patch(`/user/${params.bandId}/favorite`);
-      setIsFavorite(!isFavorite); 
-      console.log(response.data);
+      setIsFavorite(!isFavorite);
+      
     } catch (error) {
       navigate("/error");
     }
@@ -54,25 +50,20 @@ function AllBandsDetails() {
   return (
     <div>
       <h1>This Is:</h1>
-      <br/>
+      <br />
       <h1>{bandDetails.name}</h1>
       <h6>{bandDetails.country}</h6>
-      <img 
-        src={bandDetails.profileImage} 
-
-
-
-
-        onError={(e) => { 
-          e.target.onerror = null; 
-          e.target.src = logouser; 
-          e.target.style.width = '150px'; 
-          e.target.style.height = '150px'; 
-        }} 
+      <img
+        src={bandDetails.profileImage}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = logouser;
+          e.target.style.width = "150px";
+          e.target.style.height = "150px";
+        }}
       />
       <h2>Genres:</h2>
       <h3>{bandDetails.genre}</h3>
-
 
       <h2>About The Band :</h2>
       <p>{bandDetails.description}</p>
@@ -83,15 +74,8 @@ function AllBandsDetails() {
         )}
       </Link>
 
-
-
-       
       <Button variant="dark" onClick={handleFavorite}>
-        
-        
-        
-        
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
       </Button>
       <AddForm />
     </div>
