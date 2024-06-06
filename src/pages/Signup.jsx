@@ -7,7 +7,7 @@ import cat from "../../public/images/cat.gif"
 import Form from 'react-bootstrap/Form';
 import logo from "/images/logo.png"
 import Button from 'react-bootstrap/Button';
-
+import service from "../services/index.services";
 
 function Signup() {
 
@@ -33,8 +33,8 @@ function Signup() {
 
         try {
 
-                await axios.post("http://localhost:5005/api/auth/signup", newUser)
-               
+                //await axios.post("http://localhost:5005/api/auth/signup", newUser)
+               await service.post("/auth/signup", newUser)
             navigate("/")
             
         } catch (error) {

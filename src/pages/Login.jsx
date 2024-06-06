@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Signup from './Signup';
@@ -7,6 +7,7 @@ import { AuthContext } from '../context/auth.context';
 import logo from "/images/logo.png"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import service from '../services/index.services';
 
 function Login() {
   const {authenticateUser}=useContext(AuthContext)
@@ -31,7 +32,8 @@ function Login() {
         try {
             
 
-            const response=await axios.post("http://localhost:5005/api/auth/login", userCredentials)
+            
+            const response=await service.post("/auth/login",userCredentials)
             console.log(response);
 
             //store the token in the localstore

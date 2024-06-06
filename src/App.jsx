@@ -27,7 +27,7 @@ function App() {
       <Route path='/' element={<Login />}/>
        <Route path='/home' element={<Home />}/>
        <Route path='/signup' element={<Signup />}/>
-       <Route path="/profile"element={<OnlyPrivate><Profile /></OnlyPrivate>}/>
+       <Route path="/profile/:userId"element={<Profile />}/>{/*<OnlyPrivate><Profile /></OnlyPrivate>}*/}
        <Route path='/new-band' element={<CreateABand />}/>
        <Route path='/all-bands'element={<AllBands />}/>
        <Route path='/add-form'element={<AddForm />}/>

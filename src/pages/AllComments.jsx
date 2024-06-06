@@ -3,6 +3,8 @@ import service from "../services/index.services";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function AllComments(props) {
   const navigate=useNavigate()
@@ -26,7 +28,7 @@ function AllComments(props) {
       setOwner(response.data.owner)
       console.log(commentList);
     } catch (error) {
-     
+     navigate("/error")
     }
 };
     // aque el delete comments
@@ -44,16 +46,20 @@ function AllComments(props) {
 
   
   return (
-  <div>
+  <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
 
 {commentList&&commentList.map((eachComment, i)=>{
   console.log(eachComment);
     return(
         <div key={i}>
-            <p>{eachComment.text}</p>
-           {isLoggedIn&&loggedUserId==eachComment.user &&(
-            <button onClick={(e)=>deleteComment(e, eachComment._id)}>Delete</button>)}
-            
+          <Card border="primary" style={{ width: '18rem' }}>
+
+           <Card.Body>   <Card.Text>{eachComment.text}</Card.Text> </Card.Body>
+        <Card.Header>     {isLoggedIn&&loggedUserId==eachComment.user &&(
+          
+         <Button variant="dark" onClick={(e)=>deleteComment(e, eachComment._id)}>Delete</Button>  )}</Card.Header>   
+             
+           </Card>  
              </div>
     )
 })}

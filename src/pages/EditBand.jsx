@@ -251,10 +251,12 @@ function EditBand() {
           </Form.Group>
         </div>
 <Button variant="dark" type="submit">Submit</Button>
-        
+        <br/>
+        <p>or</p>
         </Form>
+        <div style={{marginTop:20}}>
         {isLoggedIn&&loggedUserId===owner._id && (
-        <Button variant="dark" onClick={deleteBand}>Delete</Button>)}
+        <Button variant="dark" onClick={deleteBand}>Delete</Button>)}</div>
     </div>
    
   )

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-
+import service from "../services/index.services";
 
 //component who shares the context
 const AuthContext=createContext()
@@ -25,7 +25,9 @@ function AuthWrapper(props){
 
         try {
 
-            const response =await axios.get("http://localhost:5005/api/auth/verify", {headers:{Authorization:`Bearer ${authToken}`}})
+            //const response =await axios.get("http://localhost:5005/api/auth/verify", {headers:{Authorization:`Bearer ${authToken}`}})
+            const response = await service.get("/auth/verify",{headers:{Authorization:`Bearer ${authToken}`}})
+            
             console.log(response);
                 //token is valid
             setIsLoggedIn(true)
@@ -53,7 +55,7 @@ function AuthWrapper(props){
         authenticateUser()
     }, [])
     if (isAuthenticating===true){
-        return <p><div className="loader"></div></p>
+        return <div className="loader"></div>
     }
 
     return(

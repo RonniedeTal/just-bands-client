@@ -2,10 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logouser from "/images/logouser.png"
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import service from '../services/index.services';
+
 function Home() {
 const [randomBand, setRandomBand]=useState([])
   useEffect(()=>{
-    axios.get("http://localhost:5005/api/band/random")
+    
+    service.get("/band/random")
     .then((response)=>{
       console.log(response);
       setRandomBand(response.data)
@@ -20,14 +25,19 @@ const [randomBand, setRandomBand]=useState([])
 
   return (
     <div>
-      <Link to={'/new-band'}>Upload Your Band</Link>
-      <Link to={"/all-bands"}>All the Bands</Link>
+      <h3>What to do?</h3>
+       <Link to={'/new-band'}><Button variant="dark">Upload Your Band</Button></Link> or check 
 
-       <div>
-        <h1> Our Recomendation:</h1>
+       <Link to={"/all-bands"}><Button variant="dark">All the Bands</Button></Link>
+      
+<h1> Our Recomendation:</h1>
+       <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+        
+        <Card border="dark" style={{ width: '18rem', backgroundColor:"black" }}>
         <Link to={`/band-details/${randomBand._id}`}>{/*no me dirige ... revisar la llamada de allbanddetais*/}
-        <h1>{randomBand.name}</h1>
-        <h3>{randomBand.genre}</h3>
+        <Card.Header>{randomBand.genre}</Card.Header>
+        <Card.Body>
+        <Card.Title>{randomBand.name}</Card.Title>
         <img 
         src={randomBand.profileImage} style={{width:250}}
         onError={(e) => { 
@@ -37,10 +47,12 @@ const [randomBand, setRandomBand]=useState([])
           e.target.style.height = '250px'; 
         }} 
       />
-        <p>{randomBand.country}</p>
+        <Card.Text>{randomBand.country}</Card.Text>
 
-        
+        </Card.Body>
         </Link>
+        
+        </Card>
        </div>
      
     </div>

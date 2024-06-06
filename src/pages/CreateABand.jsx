@@ -46,9 +46,10 @@ const [isUploading, setIsUploading] = useState(false);
     //     this name needs to match the name used in the middleware in the backend => uploader.single("image")
   
     try {
-      const response = await axios.post("http://localhost:5005/api/upload", uploadData)
+      //const response = await axios.post("http://localhost:5005/api/upload", uploadData)
       // !IMPORTANT: Adapt the request structure to the one in your proyect (services, .env, auth, etc...)
-  
+      const response = await service.post("/upload", uploadData)
+
       setImageUrl(response.data.imageUrl);
       //                          |
       //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });

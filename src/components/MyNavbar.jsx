@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from "/images/logo.png"
 
 function MyNavbar() {
-const {authenticateUser, isLoggedIn}=useContext(AuthContext)
+const {authenticateUser, isLoggedIn, loggedUserId}=useContext(AuthContext)
 const navigate=useNavigate()
 
   const handleLogout=async()=>{
@@ -30,7 +30,7 @@ navigate("/")
         <Nav className='navborder'>
           
               <Nav.Link as={Link} to="/home">Home</Nav.Link>
-              <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+              <Nav.Link as={Link} to={`/profile/${loggedUserId}`}>Profile</Nav.Link>
               
               <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
            

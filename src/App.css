@@ -42,3 +42,7 @@
 @keyframes l24{
   100%{background-position: left}
 }
+
+.custom-card {
+  background-color: gray;
+}

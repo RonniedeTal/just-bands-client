@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import service from "../services/index.services";
 import { AuthContext } from "../context/auth.context";
 import AllComments from "../pages/AllComments";
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 function AddForm() {
   const navigate = useNavigate();
   const params= useParams("")
@@ -40,20 +41,21 @@ const handleSubmit = async (e) => {
  
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Leave your Feedback:</label>
-          <input
-            type="text"
+      <Form onSubmit={handleSubmit}>
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '15px' }}>
+        <Form.Group style={{width:400, }}>
+          <Form.Label><h1>Leave your Feedback :</h1>  </Form.Label>
+          <Form.Control as="textarea" rows={3} type="text"
             name="text"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-          />
+          /></Form.Group>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+        
+        <Button variant="dark" type="submit">Submit</Button>
+        </Form>
       <div>
-        <h3>Comments:</h3>
+       
         
          
        
